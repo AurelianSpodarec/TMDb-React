@@ -11,6 +11,7 @@ export default defineConfig({
             assets: `${path.resolve(__dirname, "./src/assets/")}`,
             routes: `${path.resolve(__dirname, "./src/routes/")}`,
             services: `${path.resolve(__dirname, "./src/services/")}`,
+            types: `${path.resolve(__dirname, "./src/types/")}`,
             views: `${path.resolve(__dirname, "./src/views/")}`,
         }
     }

@@ -1,5 +1,5 @@
 import { useEffect, useState } from "react";
-import { getMovieListPopular } from "../../../services/themoviedb/api/Movies";
+import { getMovieListPopular } from "services/themoviedb/api/Movies";
 
 function Home() {
 

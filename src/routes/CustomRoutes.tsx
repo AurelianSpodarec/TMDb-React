@@ -1,7 +1,7 @@
 import { useRoutes } from "react-router-dom";
 
-import Home from "../views/pages/Home";
-import NotFound from "../views/pages/NotFound/NotFound";
+import Home from "views/pages/Home";
+import NotFound from "views/pages/NotFound/NotFound";
 
 
 function CustomRoutes() {

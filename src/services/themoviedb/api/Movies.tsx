@@ -3,32 +3,42 @@
 // ============================================================
 import FetchTheMovieDB from "../fetch/FetchTheMovieDB"
 
+import { 
+    IMovie, 
+    IMovieAccountStates, 
+    IMoveAlternativeTitle, 
+    IMovieChange, 
+    ISocialIds
+} from "types/IMovie";
+
+import { ICredits } from "@/types/ICredits";
+
+
 interface MovieRequestParams {
     id: number;
 }
   
-
-export async function getMovieDetails({ id }:MovieRequestParams): Promise<any> {
+export async function getMovieDetails({ id }:MovieRequestParams): Promise<IMovie> {
     return FetchTheMovieDB(`movie/${id}`, "GET")
 }
 
-export async function getMovieAccountStates({ id }:MovieRequestParams): Promise<any> {
+export async function getMovieAccountStates({ id }:MovieRequestParams): Promise<IMovieAccountStates> {
     return FetchTheMovieDB(`movie/${id}/account_states`, "GET")
 }
 
-export async function getMovieAlternativeTitles({ id }:MovieRequestParams): Promise<any> {
+export async function getMovieAlternativeTitles({ id }:MovieRequestParams): Promise<IMoveAlternativeTitle> {
     return FetchTheMovieDB(`movie/${id}/alternative_titles`, "GET")
 }
 
-export async function getMovieChanges({ id }:MovieRequestParams): Promise<any> {
+export async function getMovieChanges({ id }:MovieRequestParams): Promise<IMovieChange> {
     return FetchTheMovieDB(`movie/${id}/changes`, "GET")
 }
 
-export async function getMovieCredits({ id }:MovieRequestParams): Promise<any> {
+export async function getMovieCredits({ id }:MovieRequestParams): Promise<ICredits> {
     return FetchTheMovieDB(`movie/${id}/credits`, "GET")
 }
 
-export async function getMovieExternalIDs({ id }:MovieRequestParams): Promise<any> {
+export async function getMovieExternalIDs({ id }:MovieRequestParams): Promise<ISocialIds> {
     return FetchTheMovieDB(`movie/${id}/external_ids`, "GET")
 }
 
@@ -88,7 +98,7 @@ export async function getMovieNowPlaying(): Promise<any> {
     return FetchTheMovieDB(`movie/now_playing`, "GET")
 }
 
-export async function getMovieListPopular(page = 1): Promise<any>  {
+export async function getMovieListPopular(page = 1): Promise<IMovie>  {
     const params:any = {
         page
     }

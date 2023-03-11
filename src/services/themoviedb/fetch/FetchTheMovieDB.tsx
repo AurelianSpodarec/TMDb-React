@@ -1,5 +1,5 @@
 import { getResponseContent, RequestError } from 'services/requests';
-import config from '../config_themoviedb';
+import config from './config_themoviedb';
 
 const FetchTheMovieDB = async function (endpoint:string, method: 'GET' | 'POST' | 'PUT' | 'DELETE', data?:any) {
    

@@ -1,11 +1,13 @@
 import { useEffect, useState } from "react";
-import { getMovieListPopular } from "services/themoviedb/api/Movies";
+import { getMovieDetails, getMovieListPopular } from "services/themoviedb/api/Movies";
 
 function Home() {
 
     async function fetch() {
         const res = await getMovieListPopular()
+        const res2 = await getMovieDetails({id: 1077280 })
         console.log(res)
+        console.log(res2)
     }
     
     useEffect(() => {

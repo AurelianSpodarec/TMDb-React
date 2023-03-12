@@ -19,7 +19,7 @@ interface MovieRequestParams {
 }
   
 export async function getMovieDetails({ id }:MovieRequestParams): Promise<IMovie> {
-    return FetchTheMovieDB(`movie/${id}`, "GET")
+    return FetchTheMovieDB(`movie/${id}?`, "GET")
 }
 
 export async function getMovieAccountStates({ id }:MovieRequestParams): Promise<IMovieAccountStates> {
@@ -91,11 +91,11 @@ export async function deleteMovieRate({ id }:MovieRequestParams): Promise<any> {
 }
 
 export async function getMovieLatest(): Promise<any> {
-    return FetchTheMovieDB(`movie/latest`, "GET")
+    return FetchTheMovieDB(`movie/latest?`, "GET")
 }
 
 export async function getMovieNowPlaying(): Promise<any> {
-    return FetchTheMovieDB(`movie/now_playing`, "GET")
+    return FetchTheMovieDB(`movie/now_playing?`, "GET")
 }
 
 export async function getMovieListPopular(page = 1): Promise<IMovie>  {
@@ -105,11 +105,11 @@ export async function getMovieListPopular(page = 1): Promise<IMovie>  {
 
     const qa = new URLSearchParams(params);
     const url = qa.toString() === "" ? "" : `?${qa}`;
-    return FetchTheMovieDB(`movie/popular${url}`, "GET")
+    return FetchTheMovieDB(`movie/popular${url}&`, "GET")
 }
 
 export async function getMovieTopRated(): Promise<any> {
-    return FetchTheMovieDB(`movie/top_rated`, "GET")
+    return FetchTheMovieDB(`movie/top_rated?`, "GET")
 }
 
 export async function getMovieUpcoming(): Promise<any> {

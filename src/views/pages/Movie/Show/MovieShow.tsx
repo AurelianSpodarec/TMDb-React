@@ -21,6 +21,10 @@ function MovieShow() {
     return (
         <div>
             Movie Show
+            <img
+                src={`https://image.tmdb.org/t/p/w500${movie?.backdrop_path}`}
+                alt={`${movie?.title} poster`}
+            />
             <h1>{movie.title}</h1>
         </div>
     )

@@ -20,7 +20,7 @@ function MovieList({ items }: any) {
     }
     
     return (
-        <div className="space-y-4 relative">
+        <div className="space-y-4 grid grid-cols-4 gap-4 relative">
             {renderContent()}
         </div>
     )

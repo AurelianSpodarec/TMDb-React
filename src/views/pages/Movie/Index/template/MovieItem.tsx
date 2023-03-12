@@ -32,12 +32,13 @@ function MovieItem({ movie, isLoading }:MovieItemProps) {
     }
 
     return (
-        <article>
+        <article className="">
             <Link to={`/movies/${movie?.id}`} className={`md:space-x-5`}>
-                <h2>{movie?.title}</h2>
+                {/* <h2>{movie?.title}</h2> */}
                 <img
-                    src={`https://image.tmdb.org/t/p/w500${movie?.poster_path}`}
+                    src={`https://image.tmdb.org/t/p/w500${movie?.backdrop_path}`}
                     alt={`${movie?.title} poster`}
+                    className="w-full h-full object-cover"
                 />
             </Link>
         </article>

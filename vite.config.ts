@@ -14,6 +14,9 @@ export default defineConfig({
             types: `${path.resolve(__dirname, "./src/types/")}`,
             utils: `${path.resolve(__dirname, "./src/utils/")}`,
             views: `${path.resolve(__dirname, "./src/views/")}`,
+            atoms: `${path.resolve(__dirname, "./src/views/atoms/")}`,
+            molecules: `${path.resolve(__dirname, "./src/views/molecules/")}`,
+            features: `${path.resolve(__dirname, "./src/views/features/")}`,
         }
     }
 })

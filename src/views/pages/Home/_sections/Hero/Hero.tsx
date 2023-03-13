@@ -25,7 +25,7 @@ function Hero() {
     }, []);
 
     return (
-        <section className="relative shadow-inner overflow-hidden h-[700px] mx-auto">
+        <section className="relative shadow-inner overflow-hidden h-[800px] mx-auto">
         {/* <div className=""> */}
 
             <div className="flex flex-row my-0 h-full w-full px-[5vw] mx-auto relative">

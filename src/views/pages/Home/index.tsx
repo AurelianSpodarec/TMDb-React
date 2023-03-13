@@ -2,32 +2,16 @@ import { useEffect, useState } from "react";
 import Hero from "./_sections/Hero/Hero";
 
 import { getTrending } from "@/services/themoviedb/api/Trending";
+import PosterCard from "molecules/PosterCard";
 
-function PosterCard({ item }:any) {
-    console.log(item)
-    return (
-        <div className="overflow-hidden rounded-2xl">
-            <div className="h-[300px]">
-                <img className="h-full w-full object-cover" src={` https://image.tmdb.org/t/p/w500/${item.poster_path}`} />
-            </div>
-            <div>
-                <h3 className="text-white">{item.title ? item.title : item.name}</h3>
-                <span className="text-white">{item.media_type}</span>
-                <span className="text-white">{item.release_date}</span>
-            </div>
-        </div>
-    )
-}
 
 function RenderPosters({ data }:any) {
     console.log(data)
     return (
         <div className="grid grid-cols-7 gap-12">
-            {
-                data && data.map((item:any) => {
-                    return <PosterCard key={item.id} item={item} />
-                })
-            }
+            {data && data.map((item:any) => {
+                return <PosterCard key={item.id} item={item} />
+            })}
         </div>
     )
 }

@@ -23,7 +23,10 @@
             "services/*": ["./src/services/*"],
             "types/*": ["./src/types/*"],
             "utils/*": ["./src/utils/*"],
-            "views/*": ["./src/views/*"]
+            "views/*": ["./src/views/*"],
+            "atoms/*": ["./src/views/atoms/*"],
+            "molecules/*": ["./src/views/molecules/*"],
+            "features/*": ["./src/views/features/*"]
         },
     },
     "include": ["src"],

@@ -56,7 +56,6 @@ The folder prefixes prioritize order, as some folders require interdependent fun
 ├── /3-layouts      # global layouts such as: header, footer, nav, sidebar  
 ├── cheat.scss      # hot fixes - should be cleaned once a while  
 ├── styles.scss     # imports all above, it gives a nice overlook on all imports, as they do need to follow an order  
- 
 ```
 
 ## Top to bottom approach

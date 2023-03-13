@@ -1,6 +1,6 @@
 import MediaType from "../../atoms/MediaType";
 
-function PosterCard({ item }:any) {
+function PosterCard({ item }:{item: any}) {
     return (
         <div className="overflow-hidden">
             <div className="h-[270px]">

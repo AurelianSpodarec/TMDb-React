@@ -1,2 +1,3 @@
-export default {}
-// URL for images, app url etc...
+export const appConfig =  {
+    urlImageTMDB: "https://image.tmdb.org/t/p/"
+}

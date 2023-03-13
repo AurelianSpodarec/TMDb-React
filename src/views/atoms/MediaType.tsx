@@ -1,10 +1,5 @@
 import { capitalizeFirstLetter } from "@/utils/common";
 
-interface mediaTypes {
-    movie: string;
-    tv: string;
-}
-
 function MediaType({ name = "movie" }:{ name?: keyof mediaTypes }) {
 
     const mediaTypes: mediaTypes = {
@@ -20,3 +15,8 @@ function MediaType({ name = "movie" }:{ name?: keyof mediaTypes }) {
 }
 
 export default MediaType;
+
+interface mediaTypes {
+    movie: string;
+    tv: string;
+}

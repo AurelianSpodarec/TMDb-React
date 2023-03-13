@@ -1,6 +1,6 @@
 import { Link } from "react-router-dom";
 
-function TitleHeader({ title, viewAllLink}:any) {
+function TitleHeader({ title, viewAllLink}: TitleHeaderProps) {
     return (
         <header>
         <div className="flex justify-between items-center">
@@ -12,3 +12,8 @@ function TitleHeader({ title, viewAllLink}:any) {
 }
 
 export default TitleHeader;
+
+interface TitleHeaderProps {
+    title: string;
+    viewAllLink?: string;
+}

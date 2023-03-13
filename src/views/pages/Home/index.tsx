@@ -4,19 +4,11 @@ import Hero from "./_sections/Hero/Hero";
 import { getTrending } from "@/services/themoviedb/api/Trending";
 
 import Section from "atoms/Section";
-import PosterCard from "molecules/PosterCard";
+import Container from "atoms/Container";
+
 import TitleHeader from "molecules/TitleHeader";
-import Container from "@/views/atoms/Container";
+import PosterList from "molecules/Poster/PosterList";
 
-
-// TODO: There will be a lot of these functions for different types, perhaps a general RenderPosterList will be good or a folder to store different variations so they can be reused
-function RenderPosters({ data }:any) {
-    return (
-        <div className="grid grid-cols-7 gap-12">
-            {data && data.map((item:any) => <PosterCard key={item.id} item={item} />)}
-        </div>
-    )
-}
 
 function Home() {
     const [trending, setTrending] = useState({})
@@ -41,19 +33,30 @@ function Home() {
                     title="🔥 Trending This Week"
                     viewAllLink="movies" 
                 />
-                <RenderPosters data={trending.results} />
+                <PosterList data={trending.results} />
 
             </Container>
             </Section>
 
-            <Section id="latest" className="banner">
+            <Section id="latest">
             <Container>
 
                 <TitleHeader 
                     title="🎬 Coming up next"
                     viewAllLink="movies" 
                 />
-                <RenderPosters data={trending.results} />
+                <PosterList data={trending.results} />
+            
+            </Container>
+            </Section>
+
+            <Section id="people">
+            <Container>
+
+                <TitleHeader 
+                    title="🎬 Top Celebrities"
+                    viewAllLink="movies" 
+                />
             
             </Container>
             </Section>

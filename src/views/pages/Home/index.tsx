@@ -2,16 +2,16 @@ import { useEffect, useState } from "react";
 import Hero from "./_sections/Hero/Hero";
 
 import { getTrending } from "@/services/themoviedb/api/Trending";
+
 import PosterCard from "molecules/PosterCard";
+import TitleHeader from "molecules/TitleHeader";
 
 
+// TODO: There will be a lot of these functions for different types, perhaps a general RenderPosterList will be good or a folder to store different variations so they can be reused
 function RenderPosters({ data }:any) {
-    console.log(data)
     return (
         <div className="grid grid-cols-7 gap-12">
-            {data && data.map((item:any) => {
-                return <PosterCard key={item.id} item={item} />
-            })}
+            {data && data.map((item:any) => <PosterCard key={item.id} item={item} />)}
         </div>
     )
 }
@@ -22,7 +22,6 @@ function Home() {
     async function fetch() {
         const res = await getTrending();
         setTrending({...res, results: res.results.slice(0,7)})
-        console.log("trending", res)
     }
 
     useEffect(() => {
@@ -34,7 +33,12 @@ function Home() {
             <Hero />
 
             <div className="banner">
-                <h2 className="font-bold text-3xl text-white">🔥 Trending This Week</h2>
+               
+                <TitleHeader 
+                    title="🔥 Trending This Week"
+                    viewAllLink="movies" 
+                />
+
                 <div>
                     <RenderPosters data={trending.results} />
                 </div>

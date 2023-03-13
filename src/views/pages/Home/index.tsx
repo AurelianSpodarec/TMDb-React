@@ -50,11 +50,11 @@ function Home() {
             </Container>
             </Section>
 
-            <Section id="people">
+            <Section id="top-rated">
             <Container>
 
                 <TitleHeader 
-                    title="🎬 Top Celebrities"
+                    title="⭐ Top Rated"
                     viewAllLink="movies" 
                 />
             

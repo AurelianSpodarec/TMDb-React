@@ -1,3 +1,4 @@
+import Button from "@/views/atoms/Button/Button";
 import { useEffect, useState } from "react";
 
 import { getMovieNowPlaying } from "services/themoviedb/api/Movies";
@@ -32,6 +33,9 @@ function Hero() {
                 <div className="flex justify-center flex-col hero text-white z-10 w-[35%]">
                     <div className="mb-[200px]">
                         <h1 className="text-5xl font-bold">{previewMovie?.title}</h1>
+                        <div>
+                            <Button label="Play Now" />
+                        </div>
                         <span>{previewMovie?.overview}</span>
                     </div>
                 </div>

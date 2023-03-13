@@ -5,7 +5,7 @@ import FetchTheMovieDB from "../fetch/FetchTheMovieDB"
 
 export async function getTrending(
     { mediaType = "all", timeWindow ="day" }:
-    { mediaType?: keyof MediaType, timeWindow?: keyof TimeWindow}
+    { mediaType?: keyof MediaType, timeWindow?: keyof TimeWindow} = {}
 ): Promise<any> {
    
     const mediaTypes: MediaType ={
@@ -20,7 +20,7 @@ export async function getTrending(
         week: "week"
     }
 
-    return FetchTheMovieDB(`trending/popular?${mediaTypes[mediaType]}/${timeWindows[timeWindow]}&`, "GET")
+    return FetchTheMovieDB(`trending/${mediaTypes[mediaType]}/${timeWindows[timeWindow]}?`, "GET")
 }
 
 interface MediaType {

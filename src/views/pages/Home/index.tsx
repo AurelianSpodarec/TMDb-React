@@ -3,8 +3,10 @@ import Hero from "./_sections/Hero/Hero";
 
 import { getTrending } from "@/services/themoviedb/api/Trending";
 
+import Section from "atoms/Section";
 import PosterCard from "molecules/PosterCard";
 import TitleHeader from "molecules/TitleHeader";
+import Container from "@/views/atoms/Container";
 
 
 // TODO: There will be a lot of these functions for different types, perhaps a general RenderPosterList will be good or a folder to store different variations so they can be reused
@@ -32,17 +34,29 @@ function Home() {
         <div className="bg-[#071520]">
             <Hero />
 
-            <div className="banner">
-               
+            <Section id="trending" className="banner">
+            <Container>
+
                 <TitleHeader 
                     title="🔥 Trending This Week"
                     viewAllLink="movies" 
                 />
+                <RenderPosters data={trending.results} />
 
-                <div>
-                    <RenderPosters data={trending.results} />
-                </div>
-            </div>
+            </Container>
+            </Section>
+
+            <Section id="latest" className="banner">
+            <Container>
+
+                <TitleHeader 
+                    title="🎬 Coming up next"
+                    viewAllLink="movies" 
+                />
+                <RenderPosters data={trending.results} />
+            
+            </Container>
+            </Section>
         </div>
     )
 }

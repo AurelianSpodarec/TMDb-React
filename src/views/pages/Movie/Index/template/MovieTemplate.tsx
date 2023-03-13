@@ -3,6 +3,8 @@ import { getMovieNowPlaying } from "@/services/themoviedb/api/Movies";
 import MovieList from './MovieList';
 
 function MovieListTemplate() {
+    // Pagination? Yes/no
+    // number to display posts
 
     const [movies, setMovies] = useState<Request | null>(null);
 

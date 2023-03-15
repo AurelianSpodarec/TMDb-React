@@ -36,7 +36,7 @@ function CustomRoutes() {
             element: <PeopleShow />
         },
         {
-            path: "/discovery",
+            path: "/discover",
             element: <DiscoverIndex />
         },
     ]);

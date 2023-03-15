@@ -1,5 +1,6 @@
 import { useEffect, useState } from "react";
-import { getPersonLatest, getPersonListPopular } from "@/services/themoviedb/api/People";
+
+import { getPersonListPopular } from "@/services/apis/themoviedb/requests/People";
 
 import Container from "@/views/atoms/Container";
 import Section from "@/views/atoms/Section";

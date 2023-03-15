@@ -1,4 +1,4 @@
-import { getPersonDetails } from "@/services/themoviedb/api/People";
+import { getPersonDetails } from "@/services/apis/themoviedb/requests/People";
 import { useEffect, useState } from "react";
 import { useParams } from 'react-router-dom';
 

@@ -1,7 +1,7 @@
 import { useEffect, useState } from "react";
 import Hero from "./_sections/Hero/Hero";
 
-import { getTrending } from "@/services/themoviedb/api/Trending";
+import { getTrending } from "@/services/apis/themoviedb/requests/Trending";
 
 import Section from "atoms/Section";
 import Container from "atoms/Container";

@@ -1,7 +1,8 @@
 import Button from "@/views/atoms/Button/Button";
 import { useEffect, useState } from "react";
 
-import { getMovieNowPlaying } from "services/themoviedb/api/Movies";
+import { getMovieNowPlaying } from "@/services/apis/themoviedb/requests/Movies";
+
 import { IMovie } from "types/IMovie";
 import RecommendedList from "./_components/RecommendedList";
 

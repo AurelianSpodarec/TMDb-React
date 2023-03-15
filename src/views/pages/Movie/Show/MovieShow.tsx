@@ -1,7 +1,8 @@
 import { useEffect, useState } from "react";
 import { useParams } from 'react-router-dom';
 
-import { getMovieDetails } from "services/themoviedb/api/Movies";
+import { getMovieDetails } from "@/services/apis/themoviedb/requests/Movies";
+
 import { IMovie } from "types/IMovie";
 
 import GenreList from "./_components/Genre/GenreList";

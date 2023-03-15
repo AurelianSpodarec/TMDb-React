@@ -1,5 +1,6 @@
 import React, { useState, useEffect } from 'react';
-import { getMovieNowPlaying } from "@/services/themoviedb/api/Movies";
+
+import { getMovieNowPlaying } from '@/services/apis/themoviedb/requests/Movies';
 import MovieList from './MovieList';
 
 function MovieListTemplate() {

@@ -23,30 +23,36 @@ function PeopleIndex() {
    
     return (
         <div>
+
+            <header>
+                
+            </header>
             
-            <Section>
-            <Container>
+            <div>
+                <Section>
+                <Container>
 
-                <TitleHeader title="Top Trending Celebrities" />
+                    <TitleHeader title="Top Trending Celebrities" />
 
-                <div>
-                    <PersonList data={topTrending?.results} />
-                </div>
+                    <div>
+                        <PersonList data={topTrending?.results} />
+                    </div>
 
-            </Container>
-            </Section>
+                </Container>
+                </Section>
 
-            <Section>
-            <Container>
+                <Section>
+                <Container>
 
-                <TitleHeader title="Latest Celebrities" />
+                    <TitleHeader title="Latest Celebrities" />
 
-                <div>
-                    {/* <PersonCard /> */}
-                </div>
+                    <div>
+                        {/* <PersonCard /> */}
+                    </div>
 
-            </Container>
-            </Section>
+                </Container>
+                </Section>
+            </div>
 
         </div>
     )

@@ -1,4 +1,4 @@
-export const appConfig =  {
+export const configApp =  {
     imageTMBD: {
         url:"https://image.tmdb.org/t/p",
         size: {

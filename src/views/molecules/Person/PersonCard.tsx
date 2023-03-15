@@ -7,7 +7,7 @@ function PersonCard({ item }:any) {
     return (
         <div className="text-black">
         <Link to={`/people/${item.id}`}>
-            <img src={`${appConfig.urlImageTMDB}${appConfig.urlImageSizeTMBD["2xl"]}${item.profile_path}`} />
+            <img src={`${appConfig.imageTMBD.url}${appConfig.imageTMBD.size["2xl"]}${item.profile_path}`} />
             {item.name}
             {item.known_for_departament}
             {item.popularity}

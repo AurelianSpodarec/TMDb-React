@@ -99,8 +99,8 @@ export async function getPersonListPopular(page = 1): Promise<any>  {
     }
 
     const qa = new URLSearchParams(params);
-    const url = qa.toString() === "" ? "" : `?${qa}`;
-    return FetchTheMovieDB(`person/popular${url}&`, "GET")
+    const url = qa.toString() === "&" ? "" : `?${qa}&`;
+    return FetchTheMovieDB(`person/popular${url}`, "GET")
 }
 
 export async function getPersonTopRated(): Promise<any> {

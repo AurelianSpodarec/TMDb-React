@@ -23,7 +23,7 @@ function PeopleIndex() {
     }, [])
    
     return (
-        <div>
+        <div className="bg-[#171e29] pt-28">
 
             <header>
                 

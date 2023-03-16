@@ -7,7 +7,24 @@ import Section from "@/views/atoms/Section";
 
 import PersonList from "@/views/molecules/Person/PersonList";
 import TitleHeader from "@/views/molecules/TitleHeader";
+import { configAlphabet } from "@/config/alphabet";
 
+
+function AlphabetLetter({ letter }:any) {
+    return (
+        <div>
+            {letter}
+        </div>
+    )
+}
+
+function AlphabetList() {
+    return (
+        <div className="flex text-white">
+            {configAlphabet.map((letter:any) => <AlphabetLetter letter={letter} />)}
+        </div>
+    )
+}
 
 function PeopleIndex() {
 
@@ -26,14 +43,14 @@ function PeopleIndex() {
         <div className="bg-[#171e29] pt-28">
 
             <header>
-                
+                <AlphabetList />
             </header>
             
             <div>
                 <Section>
                 <Container>
 
-                    <TitleHeader title="Top Trending Celebrities" />
+                    <TitleHeader title="Celebrities" />
 
                     <div>
                         <PersonList data={topTrending?.results} />

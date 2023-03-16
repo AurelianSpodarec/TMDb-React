@@ -9,6 +9,25 @@ function Header() {
                 <img src="https://www.themoviedb.org/assets/2/v4/logos/v2/blue_square_2-d537fb228cf3ded904ef09b136fe3fec72548ebc1fea3fbbd1ad9e36364db38b.svg" className="w-[60px]" />
                 <span className="ml-3 text-xl font-bold">React APP</span>
             </Link>
+
+            {/* <div>
+                <div>
+                    <span>All</span>
+                    <ul>
+                        <li>
+                            <button>All</button>
+                            <button>Companies</button>
+                            <button>Collections</button>
+                            <button>Keywords</button>
+                            <button>Movies</button>
+                            <button>People</button>
+                            <button>TV Shows</button>
+                        </li>
+                    </ul>
+                </div>
+                <input placeholder="Hi" />
+            </div> */}
+
             <nav className="md:mr-auto md:ml-4 md:py-1 md:pl-4 md:border-l md:border-gray-400	flex flex-wrap items-center text-base justify-center">
                 <Link to="/discover" className="mr-5 hover:text-gray-900">Discover</Link>
                 <Link to="/movies" className="mr-5 hover:text-gray-900">Movies</Link>

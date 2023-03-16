@@ -11,7 +11,7 @@ export async function getDiscoverMovie(queryParams: DiscoverMovieQueryParams): P
 
     const params:any = {
         ...queryParams, 
-        page: pageValue
+        page: pageValue || 1
     }
 
     const qa = new URLSearchParams(params);

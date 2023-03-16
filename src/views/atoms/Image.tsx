@@ -1,7 +1,7 @@
 import { configApp } from "@/config/app";
 
-function Image({ url, size = "w500", type = "poster" }:ImageProps) {
-
+function Image({ src, url, size = "w500", type = "poster" }:ImageProps) {
+    console.log("hi", url)
     if(!url) return (
         <div className="flex items-center justify-center h-full w-full ">
         <svg className="text-white fill-white w-12" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 512 512">
@@ -12,7 +12,7 @@ function Image({ url, size = "w500", type = "poster" }:ImageProps) {
     return (
         <img 
             className="h-full w-full object-cover" 
-            src={`${configApp.imageTMBD.url}/${size}/${url}`} 
+            src={url} 
         />
     )
 }
@@ -21,6 +21,7 @@ export default Image;
 
 type ImageProps = {
     url: string;
+    src?: string;
     size?: "w45" |"w92" | "w154" | "w185" | "w300" | "w342" | "w500" | "w600" | "w780" | "w1280" | "original";
     type?: "poster" | "person";
 }

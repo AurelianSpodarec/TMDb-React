@@ -15,7 +15,7 @@ function RatingBox({ rating }: any) {
         ratingClass = "";
     }
 
-    if(rating === 0) return <></>
+    if(!rating) return <></>
     return (
         <div className={`h-8 w-8 absolute top-3 right-3 rounded-full border-2 border-${ratingClass} bg-gray-900/70`}>
         <div className="flex justify-center items-center w-full h-full">

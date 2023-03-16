@@ -5,6 +5,7 @@ import Pagination from "@/views/molecules/Pagination/Pagination";
 import PosterList from "@/views/molecules/Poster/PosterList";
 import { useEffect, useState } from "react";
 import { useSearchParams } from "react-router-dom";
+import { configAdvertisement } from "@/config/advertisement";
 
 const optionSortBy = [
     {"value": "popularity.desc", "label": "Popularity Descending"},
@@ -102,6 +103,8 @@ function SortByDropdown({ value, onChange }:any) {
 function DiscoverIndex() {
     let [searchParams, setSearchParams] = useSearchParams();
     const [movies, setMovies] = useState({})
+
+
     
     const [queryParams, setQueryParams] = useState({
         "sort_by":  "release_date.desc",
@@ -110,15 +113,31 @@ function DiscoverIndex() {
         // primary_release_year: 2023,
     });
 
-    async function fetch() {
+
+
+    async function fetchData() {
         const res = await getDiscoverMovie(queryParams);
-        setMovies(res)
+        const { results } = res;
+      
+        const randomIndex = Math.floor(Math.random() * results.length);
+        const randomADIndex = Math.floor(Math.random() * configAdvertisement.length);
+        const newResults = [
+          ...results.slice(0, randomIndex),
+          configAdvertisement[randomADIndex],
+          ...results.slice(randomIndex)
+        ];
+      
+        setMovies({ ...res, results: newResults });
     }
 
+  
     useEffect(() => {
-        fetch()
+        fetchData()
     }, [queryParams, searchParams])
-
+    
+    useEffect(() => {
+    }, [])
+   
 
     function handleSortByChange(sortBy: string) {
         setSearchParams({

@@ -141,7 +141,8 @@ function DiscoverIndex() {
 
     function handleSortByChange(sortBy: string) {
         setSearchParams({
-            ...queryParams,
+            ...searchParams,
+            // ...queryParams,
             sort_by: sortBy,
         });
     }

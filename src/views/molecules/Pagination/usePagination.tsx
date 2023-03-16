@@ -12,6 +12,7 @@ const usePagination = ({ activePage, totalPages }:any) => {
     const goToNextPage = () => {
         if(pageValue === totalPages) return
         setSearchParams({ 
+            ...params,
             page: String(pageValue + 1)
         })
     };
@@ -19,6 +20,7 @@ const usePagination = ({ activePage, totalPages }:any) => {
     const goToPreviousPage = () => {
         if(pageValue === 1) return
         setSearchParams({ 
+            ...params,
             page: String(pageValue - 1)
         })
     };

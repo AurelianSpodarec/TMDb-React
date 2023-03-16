@@ -1,6 +1,7 @@
 import { getDiscoverMovie } from "@/services/apis/themoviedb/requests/Discovery";
 import Container from "@/views/atoms/Container";
 import Section from "@/views/atoms/Section";
+import Pagination from "@/views/molecules/Pagination/Pagination";
 import PosterList from "@/views/molecules/Poster/PosterList";
 import { useEffect, useState } from "react";
 
@@ -137,7 +138,9 @@ function DiscoverIndex() {
             <Section>
             <Container>
 
+                <Pagination page={movies.page} total={movies.total_pages} />
                 <PosterList data={movies.results} />
+
 
             </Container>
             </Section>

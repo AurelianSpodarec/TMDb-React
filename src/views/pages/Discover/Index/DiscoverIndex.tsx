@@ -104,8 +104,6 @@ function DiscoverIndex() {
     let [searchParams, setSearchParams] = useSearchParams();
     const [movies, setMovies] = useState({})
 
-
-    
     const [queryParams, setQueryParams] = useState({
         "sort_by":  "release_date.desc",
         "primary_release_date.lte": "2023-03-03", // needs to be always before current date so bigger chance to have an image
@@ -160,9 +158,12 @@ function DiscoverIndex() {
             <Section>
             <Container>
 
-                <Pagination page={movies.page} total={movies.total_pages} />
                 <PosterList data={movies.results} />
 
+                <div className="flex justify-center items-center">
+                    <div></div>
+                    <Pagination currentPage={movies.page} totalPages={movies.total_pages} />
+                </div>
 
             </Container>
             </Section>

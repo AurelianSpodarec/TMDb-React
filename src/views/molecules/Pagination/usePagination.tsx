@@ -3,11 +3,11 @@ import { useLocation, useSearchParams } from "react-router-dom";
 
 const usePagination = ({ activePage, totalPages }:any) => {
     let [searchParams, setSearchParams] = useSearchParams();
-    let [currentPage, setCurrentPage] = useState(activePage || 1);
+    let [currentPage, setCurrentPage] = useState();
 
     const location = useLocation();
     const params = new URLSearchParams(location.search);
-    const pageValue = parseInt(params.get('page')) || 1;
+    const pageValue = parseInt(params.get('page'));
 
     const goToNextPage = () => {
         if(pageValue === totalPages) return
@@ -15,6 +15,7 @@ const usePagination = ({ activePage, totalPages }:any) => {
             ...params,
             page: String(pageValue + 1)
         })
+        setCurrentPage(String(pageValue + 1))
     };
 
     const goToPreviousPage = () => {
@@ -23,6 +24,7 @@ const usePagination = ({ activePage, totalPages }:any) => {
             ...params,
             page: String(pageValue - 1)
         })
+        setCurrentPage(String(pageValue - 1))
     };
     
     const goToPage = (page:any) => {
@@ -32,6 +34,7 @@ const usePagination = ({ activePage, totalPages }:any) => {
     };
 
     return {
+        currentPage,
         goToNextPage,
         goToPreviousPage,
         goToPage

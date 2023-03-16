@@ -135,7 +135,7 @@ function DiscoverIndex() {
     }, [queryParams, searchParams])
     
     return (
-        <div className="bg-[#071520] pt-40">
+        <div className="pt-40">
 
             <Section>
             <Container>
@@ -148,7 +148,7 @@ function DiscoverIndex() {
             <Section>
             <Container>
 
-                <PosterList data={movies.results} />
+                <PosterList data={movies.results} postType="movies" />
 
                 <div className="flex justify-center items-center">
                     <div></div>

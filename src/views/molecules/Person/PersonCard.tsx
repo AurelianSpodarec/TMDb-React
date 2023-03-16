@@ -1,4 +1,4 @@
-import { configApp } from "@/config/app";
+import { _DEPRICATED_configApp } from "@/config/app";
 import { Link } from "react-router-dom";
 
 function PersonCard({ item }:any) {
@@ -7,7 +7,7 @@ function PersonCard({ item }:any) {
     return (
         <div className="text-black">
         <Link to={`/people/${item.id}`}>
-            <img src={`${configApp.imageTMBD.url}${configApp.imageTMBD.size["2xl"]}${item.profile_path}`} className="rounded-2xl" />
+            <img src={`${_DEPRICATED_configApp.imageTMBD.url}${_DEPRICATED_configApp.imageTMBD.size["2xl"]}${item.profile_path}`} className="rounded-2xl" />
             
             <div className="flex justify-between items-center w-full">
                 <div>

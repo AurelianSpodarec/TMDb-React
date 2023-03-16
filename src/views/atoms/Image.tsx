@@ -1,4 +1,4 @@
-import { configApp } from "@/config/app";
+import { _DEPRICATED_configApp } from "@/config/app";
 
 function Image({ src, url, size = "w500", type = "poster" }:ImageProps) {
     console.log("hi", url)

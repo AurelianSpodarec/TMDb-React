@@ -6,6 +6,7 @@ import PosterList from "@/views/molecules/Poster/PosterList";
 import { useEffect, useState } from "react";
 import { useSearchParams } from "react-router-dom";
 import { configAdvertisement } from "@/config/advertisement";
+import { injectAdvertisement } from "@/utils/common";
 
 const optionSortBy = [
     {"value": "popularity.desc", "label": "Popularity Descending"},
@@ -112,31 +113,6 @@ function DiscoverIndex() {
     });
 
 
-
-    async function fetchData() {
-        const res = await getDiscoverMovie(queryParams);
-        const { results } = res;
-      
-        const randomIndex = Math.floor(Math.random() * results.length);
-        const randomADIndex = Math.floor(Math.random() * configAdvertisement.length);
-        const newResults = [
-          ...results.slice(0, randomIndex),
-          configAdvertisement[randomADIndex],
-          ...results.slice(randomIndex)
-        ];
-      
-        setMovies({ ...res, results: newResults });
-    }
-
-  
-    useEffect(() => {
-        fetchData()
-    }, [queryParams, searchParams])
-    
-    useEffect(() => {
-    }, [])
-   
-
     function handleSortByChange(sortBy: string) {
         setSearchParams({
             ...searchParams,
@@ -145,15 +121,29 @@ function DiscoverIndex() {
         });
     }
 
+    async function fetchData() {
+        const res = await getDiscoverMovie(queryParams);
+
+        const newRes = injectAdvertisement(res, res.results)
+      
+        setMovies(newRes);
+    }
+
+  
+    useEffect(() => {
+        fetchData()
+    }, [queryParams, searchParams])
+    
     return (
         <div className="bg-[#071520] pt-40">
-            Discover Index  
-            <div>
 
+            <Section>
+            <Container>
 
                 <SortByDropdown value={queryParams.sort_by} onChange={handleSortByChange} />
 
-            </div>
+            </Container>
+            </Section>
 
             <Section>
             <Container>

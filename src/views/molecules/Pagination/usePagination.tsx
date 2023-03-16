@@ -6,21 +6,20 @@ const usePagination = ({ activePage, totalPages }:any) => {
     let [currentPage, setCurrentPage] = useState(activePage || 1);
 
     const location = useLocation();
-    let pathName = location.pathname;
-
-    // set page function? when stuff first loads?
+    const params = new URLSearchParams(location.search);
+    const pageValue = parseInt(params.get('page'));
 
     const goToNextPage = () => {
-        if(currentPage === totalPages) return
+        if(pageValue === totalPages) return
         setSearchParams({ 
-           page: String(currentPage + 1)
-       })
+            page: String(pageValue + 1)
+        })
     };
 
     const goToPreviousPage = () => {
-        if(currentPage === 1) return
+        if(pageValue === 1) return
         setSearchParams({ 
-            page: String(currentPage - 1)
+            page: String(pageValue - 1)
         })
     };
     
@@ -33,7 +32,6 @@ const usePagination = ({ activePage, totalPages }:any) => {
         goToPreviousPage,
         goToPage
     }
-
 }
 
 export default usePagination;

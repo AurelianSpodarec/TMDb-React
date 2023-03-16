@@ -9,6 +9,9 @@ function Pagination({ page, totalPages }:any) {
             <div>
                 <button onClick={pager.goToNextPage}>Next</button>
             </div>
+            <div>
+                <button onClick={pager.goToPreviousPage}>Prev</button>
+            </div>
         </div>
     )
 }

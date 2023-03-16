@@ -1,9 +1,10 @@
-import { getDiscoverMovie } from "@/services/apis/themoviedb/requests/Discovery";
+import { getDiscoverMovie } from "services/apis/themoviedb/requests/Discovery";
 import Container from "@/views/atoms/Container";
 import Section from "@/views/atoms/Section";
 import Pagination from "@/views/molecules/Pagination/Pagination";
 import PosterList from "@/views/molecules/Poster/PosterList";
 import { useEffect, useState } from "react";
+import { useSearchParams } from "react-router-dom";
 
 const optionSortBy = [
     {"value": "popularity.desc", "label": "Popularity Descending"},
@@ -99,8 +100,10 @@ function SortByDropdown({ value, onChange }:any) {
 
 
 function DiscoverIndex() {
+    let [searchParams, setSearchParams] = useSearchParams();
     const [movies, setMovies] = useState({})
-    const [searchParams, setSearchParams] = useState({
+    
+    const [queryParams, setQueryParams] = useState({
         "sort_by":  "release_date.desc",
         "primary_release_date.lte": "2023-03-03", // needs to be always before current date so bigger chance to have an image
         "vote_average.gte": 1 // ensures all stuff has at least 1rating, a lot have 0
@@ -108,22 +111,21 @@ function DiscoverIndex() {
     });
 
     async function fetch() {
-        const res = await getDiscoverMovie(searchParams);
+        const res = await getDiscoverMovie(queryParams);
         setMovies(res)
-        console.log("discover movie", res)
     }
 
     useEffect(() => {
         fetch()
-    }, [searchParams])
+    }, [queryParams, searchParams])
 
 
     function handleSortByChange(sortBy: string) {
         setSearchParams({
-          ...searchParams,
-          sort_by: sortBy,
+            ...queryParams,
+            sort_by: sortBy,
         });
-      }
+    }
 
     return (
         <div className="bg-[#071520] pt-40">
@@ -131,7 +133,7 @@ function DiscoverIndex() {
             <div>
 
 
-                <SortByDropdown value={searchParams.sort_by} onChange={handleSortByChange} />
+                <SortByDropdown value={queryParams.sort_by} onChange={handleSortByChange} />
 
             </div>
 

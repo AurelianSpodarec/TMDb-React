@@ -4,7 +4,15 @@
 import FetchTheMovieDB from "../fetch/FetchTheMovieDB"
 
 export async function getDiscoverMovie(queryParams: DiscoverMovieQueryParams): Promise<any>  {
-    const params:any = {...queryParams}
+    
+    const queryString = window.location.search;
+    const urlParams = new URLSearchParams(queryString);
+    const pageValue = urlParams.get('page');
+
+    const params:any = {
+        ...queryParams, 
+        page: pageValue
+    }
 
     const qa = new URLSearchParams(params);
     const url = qa.toString() === "?" ? "" : `?${qa}&`;

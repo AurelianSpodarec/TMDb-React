@@ -1,5 +1,7 @@
+import { configApp } from "@/config/app";
+
 function Image({ url, size = "w500", type = "poster" }:ImageProps) {
-    console.log("image", url)
+
     if(!url) return (
         <div className="flex items-center justify-center h-full w-full ">
         <svg className="text-white fill-white w-12" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 512 512">
@@ -10,7 +12,7 @@ function Image({ url, size = "w500", type = "poster" }:ImageProps) {
     return (
         <img 
             className="h-full w-full object-cover" 
-            src={`https://image.tmdb.org/t/p/${size}/${url}`} 
+            src={`${configApp.imageTMBD.url}/${size}/${url}`} 
         />
     )
 }

@@ -1,3 +1,7 @@
+// ==========================================================================================
+// Advertisement: To simulate real advertisement that a webapp would have
+// ===========================================================================================
+
 export const configAdvertisement = [
     {
         type: "advert",

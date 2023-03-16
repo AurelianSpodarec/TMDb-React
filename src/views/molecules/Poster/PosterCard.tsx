@@ -1,16 +1,17 @@
 import { Link } from "react-router-dom";
 
+import { configApp } from "config/app";
+
 import Image from "atoms/Image";
 import RatingBox from "atoms/RatingBox";
 import MediaType from "atoms/MediaType";
-import { configApp } from "@/config/app";
 
-function PosterCard({ item, url ="" }:{item: any, url: string }) {
+function PosterCard({ item, url ="" }: PosterCardProps ) {
     const { id, poster_path, backdrop_path, vote_average, media_type, title, name, release_date, adult, type } = item;
 
     const isAdvert = type === "advert";
-
     const availableImage = poster_path ? poster_path : backdrop_path;
+
     let fullURL;
     if (isAdvert) {
         fullURL = `/src/assets/advertisement/${poster_path}`;
@@ -19,7 +20,7 @@ function PosterCard({ item, url ="" }:{item: any, url: string }) {
     } else {
         fullURL = ""
     }
-    
+
     return (
         <div className="overflow-hidden group cursor-pointer">
         <Link to={`${url}`}>
@@ -54,3 +55,8 @@ function PosterCard({ item, url ="" }:{item: any, url: string }) {
 }
 
 export default PosterCard;
+
+type PosterCardProps = {
+    item: any;
+    url?: string;
+};

@@ -7,7 +7,7 @@ const usePagination = ({ activePage, totalPages }:any) => {
 
     const location = useLocation();
     const params = new URLSearchParams(location.search);
-    const pageValue = parseInt(params.get('page'));
+    const pageValue = parseInt(params.get('page')) || 1;
 
     const goToNextPage = () => {
         if(pageValue === totalPages) return
@@ -24,7 +24,9 @@ const usePagination = ({ activePage, totalPages }:any) => {
     };
     
     const goToPage = (page:any) => {
-        setCurrentPage(page);
+        setSearchParams({ 
+            page: String(page)
+        })
     };
 
     return {

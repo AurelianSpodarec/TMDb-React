@@ -6,6 +6,7 @@ import Image from "atoms/Image";
 import RatingBox from "atoms/RatingBox";
 import MediaType from "atoms/MediaType";
 import Skeleton from "atoms/Skeleton";
+import SkeletonPoster from "../Skeletons/SkeletonPoster";
 
 function PosterCard({ item = {}, postType = "", url ="", isLoading }: PosterCardProps ) {
     const { id, poster_path, backdrop_path, vote_average, media_type, title, name, release_date, adult, type } = item;
@@ -23,13 +24,7 @@ function PosterCard({ item = {}, postType = "", url ="", isLoading }: PosterCard
     }
     
     if(isLoading) {
-        return (
-            <div id="skeleton-poster">
-                <Skeleton variant="rect" className="mb-2" height="270px" width="100%" />
-                <Skeleton variant="text" className="mb-2" height="15px" width="90%" />
-                <Skeleton variant="text" className="mb-2" height="15px" width="70%" />
-            </div>
-        )
+        return <SkeletonPoster />
     }
     return (
         <div className="overflow-hidden group cursor-pointer">

@@ -52,11 +52,13 @@ function SortByDropdown({ value, onChange }:any) {
 
 function DiscoverIndex() {
     let [searchParams, setSearchParams] = useSearchParams();
-    const [movies, setMovies] = useState({})
 
-    const [queryParams, setQueryParams] = useState({
+    const [data, setData] = useState({})
+    const [isLoading, setIsLoading] = useState(true)
+
+    const [filterParams, setSilterParams] = useState({
         "sort_by":  "release_date.desc",
-        "primary_release_date.lte": "2023-03-03", // needs to be always before current date so bigger chance to have an image
+        "primary_release_date.lte": "2023-03-03", // needs to be always before current date so bigger chance to have an image, make the date dynamic
         "vote_average.gte": 1 // ensures all stuff has at least 1rating, a lot have 0
         // primary_release_year: 2023,
     });
@@ -65,21 +67,23 @@ function DiscoverIndex() {
     function handleSortByChange(sortBy: string) {
         setSearchParams({
             ...searchParams,
-            // ...queryParams,
+            // ...filterParams,
             sort_by: sortBy,
         });
     }
 
     async function fetchData() {
-        let res = await getDiscoverMovie(queryParams);
+        let res = await getDiscoverMovie(filterParams);
         res = injectAdvertisement(res, res.results)
-        setMovies(res);
+        setIsLoading(false)
+        setData(res);
     }
 
     useEffect(() => {
         fetchData()
-    }, [queryParams, searchParams])
-    
+        setIsLoading(true)
+    }, [filterParams, searchParams])
+
     return (
         <div className="pt-40">
 
@@ -87,7 +91,15 @@ function DiscoverIndex() {
             <Section>
             <Container>
 
-                <SortByDropdown value={queryParams.sort_by} onChange={handleSortByChange} />
+                <div>
+
+                    <div>
+                        {/* User wants to set adult content: Ha, you nasty, I'm not gonna let you do that here - this is a family friendly site! */}
+
+                        <SortByDropdown value={filterParams.sort_by} onChange={handleSortByChange} />
+                    </div>
+
+                </div>
 
             </Container>
             </Section>
@@ -96,11 +108,17 @@ function DiscoverIndex() {
             <Section>
             <Container>
 
-                <PosterList data={movies.results} postType="movies" />
+                <PosterList data={data.results}  postType="movies" isLoading={isLoading} />
 
-                <Pagination data={movies} />
+            </Container>
+            </Section>
+
+
+            <Section>
+            <Container>
+
+                <Pagination data={data} />
                 
-
             </Container>
             </Section>
         </div>

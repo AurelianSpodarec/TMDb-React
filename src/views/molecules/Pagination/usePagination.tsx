@@ -9,6 +9,10 @@ const usePagination = ({ activePage, totalPages }:any) => {
     const params = new URLSearchParams(location.search);
     const pageValue = parseInt(params.get('page'));
 
+    function snapToTop() {
+        window.scrollTo(0, 0);
+    }
+
     const goToNextPage = () => {
         if(pageValue === totalPages) return
         setSearchParams({ 
@@ -16,6 +20,7 @@ const usePagination = ({ activePage, totalPages }:any) => {
             page: String(pageValue + 1)
         })
         setCurrentPage(String(pageValue + 1))
+        snapToTop()
     };
 
     const goToPreviousPage = () => {
@@ -25,12 +30,14 @@ const usePagination = ({ activePage, totalPages }:any) => {
             page: String(pageValue - 1)
         })
         setCurrentPage(String(pageValue - 1))
+        snapToTop()
     };
     
     const goToPage = (page:any) => {
         setSearchParams({ 
             page: String(page)
         })
+        snapToTop()
     };
 
     return {

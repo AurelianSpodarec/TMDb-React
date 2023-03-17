@@ -8,6 +8,8 @@ import Section from "@/views/atoms/Section";
 import PersonList from "@/views/molecules/Person/PersonList";
 import TitleHeader from "@/views/molecules/TitleHeader";
 import { configAlphabet } from "@/config/alphabet";
+import { injectAdvertisement } from "@/utils/common";
+import Pagination from "@/views/molecules/Pagination/Pagination";
 
 
 function AlphabetLetter({ letter }:any) {
@@ -31,7 +33,8 @@ function PeopleIndex() {
     const [topTrending, setTopTrending] = useState({});
 
     async function fetch() {
-        const res = await getPersonListPopular()
+        let res = await getPersonListPopular()
+        res = injectAdvertisement(res, res.results)
         setTopTrending(res)
     }
 
@@ -68,6 +71,7 @@ function PeopleIndex() {
                         {/* <PersonCard /> */}
                     </div>
 
+                    <Pagination data={topTrending} />
                 </Container>
                 </Section>
             </div>

@@ -1,7 +1,10 @@
-# Date Movie
-Need a better name xd
+# TMDB React
 
 A React App that uses the [TheMovieDB.org](https://developers.themoviedb.org/3/getting-started/introduction) API.
+
+This webapp is under development. 
+
+-- place screenshot --
 
 ## Motivation
 Hobby project aimed at perfecting every part of code and optimize it.
@@ -58,6 +61,35 @@ The folder prefixes prioritize order, as some folders require interdependent fun
 ├── styles.scss     # imports all above, it gives a nice overlook on all imports, as they do need to follow an order  
 ```
 
+## Atomic Design
+The views partially follow the Atomic Design principles with some modification.
+
+I've seen Atomic Design being used poorly with people not having a clue where to put things, neither did I.
+
+
+ it's important to consider the complexity and scope of a UI component when deciding whether to categorize it as a molecule or an organism in Atomic Design. By doing so, you can ensure that your UI components are organized in a clear and logical manner, making it easier to maintain and reuse them in different parts of your interface.
+
+Here's a full explanation of how it should work:
+
+### Atoms
+Atoms are the basic building blocks of UI design. They are the smallest, indivisible UI components that represent a single element such as a button, input field, or label. Atoms cannot be broken down into smaller components and are therefore reusable across different parts of the interface.  
+
+### Molecules
+Molecules are made up of two or more atoms and represent more complex UI components such as forms, cards, and lists. They are used to group atoms together to create more significant and functional components.
+
+### Organisms
+Organisms are made up of two or more molecules and/or atoms and represent larger, functional parts of the interface. They are used to create reusable and independent sections of the interface.
+
+### Confusion between Molecules and Organisms
+
+Complexity: Molecules are simpler than organisms and are made up of just a few atoms, while organisms are more complex and can include multiple molecules and atoms.
+
+Functionality: Molecules usually have a specific function or purpose, while organisms represent larger, functional parts of the interface that can be used in different contexts.
+
+Scope: Molecules are smaller in scope and often represent specific UI elements, while organisms are larger in scope and represent groups of related UI elements that work together to form a more significant part of the interface.
+
+Read more here: url link
+
 ## Top to bottom approach
 
 ## Namings: Folders and Files
@@ -67,6 +99,7 @@ Challenge:
 
 Solution:
 
+Read more here: url link
 
 # Git Workflow
 The project has various branches, including:
@@ -96,6 +129,7 @@ Commit message could look like the following:
 
 Similar workflows are being used on large open-source projects such as MDN.
 
+Read more here: url link
 
 # Installing the project
 
@@ -120,3 +154,5 @@ Builds the app for production to the `dist` folder.
 Once the app is built, you might run the preview command.
 
 The vite preview command will boot up a local static web server that serves the files from dist at http://localhost:4173. It's an easy way to check if the production build looks OK in your local environment.
+
+Read more here: url link

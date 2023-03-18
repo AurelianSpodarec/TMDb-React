@@ -7,7 +7,7 @@ const usePagination = ({ activePage, totalPages }:any) => {
 
     const location = useLocation();
     const params = new URLSearchParams(location.search);
-    const pageValue = parseInt(params.get('page'));
+    const pageValue = parseInt(params.get('page') || 1);
 
     function snapToTop() {
         window.scrollTo(0, 0);

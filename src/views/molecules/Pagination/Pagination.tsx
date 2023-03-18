@@ -3,6 +3,7 @@ import PageItem from "./_components/PageItem";
 
 //TODO: On page change snap to the top
 function Pagination({ data }:any) {
+    if(!data) return <></>
     const currentPage = data.page;
     const totalPages = data.total_pages;
     const pager = usePagination({ currentPage, totalPages});

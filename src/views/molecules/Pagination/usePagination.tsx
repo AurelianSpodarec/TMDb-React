@@ -4,8 +4,6 @@ import { useLocation, useSearchParams } from "react-router-dom";
 
 
 const usePagination = (data:any) => {
-    if(!data) return <></>
-    
     let [searchParams, setSearchParams] = useSearchParams();
     
     const location = useLocation();

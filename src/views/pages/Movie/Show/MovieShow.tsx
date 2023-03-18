@@ -13,6 +13,8 @@ function MovieShow() {
     const { id } = useParams(); 
     const [movie, setMovie] = useState<IMovie>({});
 
+    const bannerImage = movie?.backdrop_path ? movie?.backdrop_path : movie?.poster_path
+
     async function fetchMovie() {
         const res = await getMovieDetails({ id: Number(id) });
         setMovie(res)
@@ -22,13 +24,13 @@ function MovieShow() {
     useEffect(() => {
         fetchMovie()
     }, [])
-
+    
     return (
         <div className="relative bg-[#05161e]">
 
             <section className="relative h-[700px] overflow-hidden">
                 <img
-                    src={`https://image.tmdb.org/t/p/original/${movie?.backdrop_path}`}
+                    src={`https://image.tmdb.org/t/p/original/${bannerImage}`}
                     alt={`${movie?.title} poster`}
                     className="absolute top-0 right-0 bottom-0 left-0"
                 />

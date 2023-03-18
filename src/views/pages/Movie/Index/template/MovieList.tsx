@@ -1,17 +1,15 @@
 import MovieItem from "./MovieItem";
 
 
-function MovieList({ items }: any) {
-
-    const isLoading = items && items.length === 0
+function MovieList({ items, isLoading }: any) {
 
     function renderContent() {
         if (isLoading) {
-            return [...Array(3)].map((_, index) => (
-                <MovieItem key={index} isLoading={true} />
+            return [...Array(21)].map((_, index) => (
+                <MovieItem key={index} isLoading={isLoading} />
             ));
         } else if (items && items.length) {
-            return items.map((item: any) => (
+            return items && items.map((item: any) => (
                 <MovieItem key={item.id} movie={item} />
             ));
         } else {

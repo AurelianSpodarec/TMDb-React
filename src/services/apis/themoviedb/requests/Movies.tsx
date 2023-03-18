@@ -99,13 +99,23 @@ export async function getMovieNowPlaying(): Promise<any> {
 }
 
 export async function getMovieListPopular(page = 1): Promise<IMovie>  {
+    const queryString = window.location.search;
+    const urlParams = new URLSearchParams(queryString);
+    const pageValue = urlParams.get('page');
+
     const params:any = {
-        page
+        page: pageValue || 1
     }
 
     const qa = new URLSearchParams(params);
-    const url = qa.toString() === "" ? "" : `?${qa}`;
-    return FetchTheMovieDB(`movie/popular${url}&`, "GET")
+    const url = qa.toString() === "?" ? "" : `?${qa}&`;
+    return FetchTheMovieDB(`movie/popular${url}`, "GET")
+
+
+  
+    // const qa = new URLSearchParams(params);
+    // const url = qa.toString() === "?" ? "" : `?${qa}&`;
+    // return FetchTheMovieDB(`discover/movie${url}`, "GET")
 }
 
 export async function getMovieTopRated(): Promise<any> {

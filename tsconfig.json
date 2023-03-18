@@ -20,6 +20,7 @@
             "@/*": ["./src/*", "./dist/*", ""],
             "assets/*": ["./src/assets/*"],
             "config/*": ["./src/config/*"],
+            "hooks/*": ["./src/hooks/*"],
             "routes/*": ["./src/routes/*"],
             "services/*": ["./src/services/*"],
             "types/*": ["./src/types/*"],
@@ -27,7 +28,7 @@
             "views/*": ["./src/views/*"],
             "atoms/*": ["./src/views/atoms/*"],
             "molecules/*": ["./src/views/molecules/*"],
-            "features/*": ["./src/views/features/*"]
+            "features/*": ["./src/views/_features/*"]
         },
     },
     "include": ["src"],

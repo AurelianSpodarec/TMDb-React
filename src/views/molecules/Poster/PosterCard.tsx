@@ -5,7 +5,6 @@ import { _DEPRICATED_configApp } from "config/app";
 import Image from "atoms/Image";
 import RatingBox from "atoms/RatingBox";
 import MediaType from "atoms/MediaType";
-import Skeleton from "atoms/Skeleton";
 import SkeletonPoster from "../Skeletons/SkeletonPoster";
 
 function PosterCard({ item = {}, postType = "", url ="", isLoading }: PosterCardProps ) {

@@ -29,7 +29,9 @@ function MovieIndex() {
 
             <Section>
             <Container>
+
                 <MovieList items={movies?.results} isLoading={isLoading} />
+            
             </Container>
             </Section>
 

@@ -1,5 +1,5 @@
 import { useEffect, useState } from "react";
-import { useSearchParams } from "react-router-dom";
+import { useLocation, useSearchParams } from "react-router-dom";
 
 import { getDiscoverMovie } from "services/apis/themoviedb/requests/Discovery";
 import { optionSortBy } from "config/filters/sortBy";
@@ -43,9 +43,9 @@ function SortByDropdown({ value, onChange }:any) {
 
     return (
         <div>
-            <label htmlFor="sort_by_select">Sort by:</label>
+            <label className="text-white" htmlFor="sort_by_select">Sort by:</label>
            {renderSelect()}
-    </div>
+        </div>
     );
 }
 
@@ -55,7 +55,6 @@ function RatingDropdown({value, onChange}:any) {
     function renderDropdown() {
         return (
             <select id="rating-dropdown" value={value} onChange={onChange}>
-            <option value="">--Select rating--</option>
             {ratingOptions && ratingOptions.map((rating:any) => (
                 <option key={rating} value={rating}>{rating}</option>
             ))}
@@ -65,30 +64,54 @@ function RatingDropdown({value, onChange}:any) {
 
     return (
         <div>
-            <label htmlFor="rating-dropdown">Select rating:</label>
+            <label className="text-white" htmlFor="rating-dropdown">Select rating:</label>
             {renderDropdown()}
         </div>
     );
 }
 
 
+function AdultContentCheckbox() {
+const [adultContent, setAdultContent] = useState(false);
+
+    const handleCheckboxChange = (event:any) => {
+        alert("Ha! You nasty, I'm not gonna let you do that here - this is a family friendly site!")
+    };
+
+    return (
+        <div className="text-white">
+        <label>
+            <input
+                type="checkbox"
+                checked={adultContent}
+                onChange={handleCheckboxChange}
+            />
+            Porn
+        </label>
+        </div>
+    );
+}
 
 
 function DiscoverIndex() {
     let [searchParams, setSearchParams] = useSearchParams();
 
+    const location = useLocation();
     const [data, setData] = useState({})
     const [isLoading, setIsLoading] = useState(true)
 
+    console.log("searc", new URLSearchParams(location.search))
+    console.log("loc", location)
+    const params = new URLSearchParams(location.search);
     const [filterParams, setSilterParams] = useState({
+        ...searchParams,
         "sort_by":  "release_date.desc",
         "primary_release_date.lte": "2023-03-03", // needs to be always before current date so bigger chance to have an image, make the date dynamic
-        "vote_average.gte": 1 // ensures all stuff has at least 1rating, a lot have 0 || UI: Let user select one and goes from there
-        // primary_release_year: 2023,
+        "vote_average.gte": 1, // ensures all stuff has at least 1rating, a lot have 0 || UI: Let user select one and goes from there
     });
 
     function handleSelectVote(filter:any) {
-        console.log("vote", filter.target.value)
+        // console.log("vote", filter.target.value)
         setSearchParams({
             ...searchParams,
             ...filterParams,
@@ -126,7 +149,11 @@ function DiscoverIndex() {
                 <div>
 
                     <div>
-                        {/* User wants to set adult content: Ha, you nasty, I'm not gonna let you do that here - this is a family friendly site! */}
+                        <div>
+
+                        </div>
+
+                        <AdultContentCheckbox />
                         <RatingDropdown value={filterParams['vote_average.gte']} onChange={handleSelectVote} />
                         <SortByDropdown value={filterParams.sort_by} onChange={handleSortByChange} />
                     </div>

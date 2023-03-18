@@ -1,5 +1,5 @@
 import { useEffect, useState } from "react";
-import { useLocation, useSearchParams } from "react-router-dom";
+import { useLocation, useNavigate, useSearchParams } from "react-router-dom";
 
 import { getDiscoverMovie } from "services/apis/themoviedb/requests/Discovery";
 import { optionSortBy } from "config/filters/sortBy";
@@ -93,16 +93,45 @@ const [adultContent, setAdultContent] = useState(false);
 }
 
 
+
+
+const searchParamNames = {
+    primary_release_date_lte: 'maxReleaseDate',
+    vote_average_gte: 'minRating',
+};
+
+
+
+
+function changeDiscoveryURL ({ changeWhat, value }:any) {
+    const navigate = useNavigate()
+    const location = useLocation();
+    const params = new URLSearchParams(location.search);
+
+    // Look for X value, and change it
+    // If it doesn't exist, add it
+
+    navigate({
+        pathname: location.pathname,
+        search: params.toString()
+    });
+}
+
+
+
 function DiscoverIndex() {
     let [searchParams, setSearchParams] = useSearchParams();
 
     const location = useLocation();
+    const urlSearchParams = location.search
+
     const [data, setData] = useState({})
     const [isLoading, setIsLoading] = useState(true)
 
-    console.log("searc", new URLSearchParams(location.search))
+    console.log("searc", new URLSearchParams(location.search).get(''))
     console.log("loc", location)
     const params = new URLSearchParams(location.search);
+
     const [filterParams, setSilterParams] = useState({
         ...searchParams,
         "sort_by":  "release_date.desc",

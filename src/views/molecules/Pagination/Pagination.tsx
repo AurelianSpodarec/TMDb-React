@@ -17,9 +17,9 @@ function Pagination({ data }:any) {
             </button>
 
             <div className="flex">
-                <PageItem label="1" />
+                <PageItem onClick={() => pager.goToPage("1")} label="1" />
                 <PageItem activePage={currentPage} label={currentPage} />
-                <PageItem label={totalPages} />
+                <PageItem onClick={() => pager.goToPage(totalPages)} label={totalPages} />
             </div>
 
             <button type="button" aria-label="Pagination: Next Page" onClick={pager.goToNextPage} className={`rounded h-14 px-6 ${pager.currentPage === totalPages ? "cursor-not-allowed bg-yellow-900" : "bg-yellow-700"} `}>

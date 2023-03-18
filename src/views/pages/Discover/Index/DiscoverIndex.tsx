@@ -9,6 +9,7 @@ import Container from "atoms/Container";
 import Section from "atoms/Section";
 import Pagination from "molecules/Pagination/Pagination";
 import PosterList from "molecules/Poster/PosterList";
+import { ratingOptions } from "@/config/filters/ratingOptions";
 
 
 const optionsPrimaryReleaseYear = [
@@ -49,6 +50,29 @@ function SortByDropdown({ value, onChange }:any) {
 }
 
 
+function RatingDropdown({value, onChange}:any) {
+
+    function renderDropdown() {
+        return (
+            <select id="rating-dropdown" value={value} onChange={onChange}>
+            <option value="">--Select rating--</option>
+            {ratingOptions && ratingOptions.map((rating:any) => (
+                <option key={rating} value={rating}>{rating}</option>
+            ))}
+        </select>
+        )
+    }
+
+    return (
+        <div>
+            <label htmlFor="rating-dropdown">Select rating:</label>
+            {renderDropdown()}
+        </div>
+    );
+}
+
+
+
 
 function DiscoverIndex() {
     let [searchParams, setSearchParams] = useSearchParams();
@@ -59,15 +83,23 @@ function DiscoverIndex() {
     const [filterParams, setSilterParams] = useState({
         "sort_by":  "release_date.desc",
         "primary_release_date.lte": "2023-03-03", // needs to be always before current date so bigger chance to have an image, make the date dynamic
-        "vote_average.gte": 1 // ensures all stuff has at least 1rating, a lot have 0
+        "vote_average.gte": 1 // ensures all stuff has at least 1rating, a lot have 0 || UI: Let user select one and goes from there
         // primary_release_year: 2023,
     });
 
+    function handleSelectVote(filter:any) {
+        console.log("vote", filter.target.value)
+        setSearchParams({
+            ...searchParams,
+            ...filterParams,
+           "vote_average.gte": filter.target.value,
+        });
+    }
 
     function handleSortByChange(sortBy: string) {
         setSearchParams({
             ...searchParams,
-            // ...filterParams,
+            ...filterParams,
             sort_by: sortBy,
         });
     }
@@ -95,7 +127,7 @@ function DiscoverIndex() {
 
                     <div>
                         {/* User wants to set adult content: Ha, you nasty, I'm not gonna let you do that here - this is a family friendly site! */}
-
+                        <RatingDropdown value={filterParams['vote_average.gte']} onChange={handleSelectVote} />
                         <SortByDropdown value={filterParams.sort_by} onChange={handleSortByChange} />
                     </div>
 

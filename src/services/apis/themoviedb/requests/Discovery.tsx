@@ -8,9 +8,11 @@ export async function getDiscoverMovie(queryParams: DiscoverMovieQueryParams): P
     const queryString = window.location.search;
     const urlParams = new URLSearchParams(queryString);
     const pageValue = urlParams.get('page');
+    const voteValue = urlParams.get('vote_average.gte');
 
     const params:any = {
         ...queryParams, 
+        "vote_average.gte": voteValue,
         page: pageValue || 1
     }
 

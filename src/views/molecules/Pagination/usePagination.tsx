@@ -17,7 +17,7 @@ const usePagination = ({ activePage, totalPages }:any) => {
     
     const updateSearchParams = (newPageValue: number) => {
         existingSearchParams.set("page", String(newPageValue));
-        setSearchParams(existingSearchParams.toString());
+        setSearchParams(existingSearchParams);
         setCurrentPage(String(newPageValue));
         snapToTop();
     };

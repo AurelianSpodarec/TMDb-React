@@ -121,17 +121,11 @@ function changeDiscoveryURL ({ changeWhat, value }:any) {
 
 function DiscoverIndex() {
     let [searchParams, setSearchParams] = useSearchParams();
-
     const location = useLocation();
     const urlSearchParams = location.search
 
     const [data, setData] = useState({})
     const [isLoading, setIsLoading] = useState(true)
-
-    console.log("searc", new URLSearchParams(location.search).get(''))
-    console.log("loc", location)
-    const params = new URLSearchParams(location.search);
-
     const [filterParams, setSilterParams] = useState({
         ...searchParams,
         "sort_by":  "release_date.desc",
@@ -139,20 +133,20 @@ function DiscoverIndex() {
         "vote_average.gte": 1, // ensures all stuff has at least 1rating, a lot have 0 || UI: Let user select one and goes from there
     });
 
+
     function handleSelectVote(filter:any) {
-        // console.log("vote", filter.target.value)
-        setSearchParams({
-            ...searchParams,
-            ...filterParams,
-           "vote_average.gte": filter.target.value,
-        });
+        updateSearchParams({ "vote_average.gte": filter.target.value });
     }
 
     function handleSortByChange(sortBy: string) {
+        updateSearchParams({ sort_by: sortBy });
+    }
+
+    function updateSearchParams(newParams: any) {
         setSearchParams({
-            ...searchParams,
-            ...filterParams,
-            sort_by: sortBy,
+        ...searchParams,
+        ...filterParams,
+        ...newParams,
         });
     }
 

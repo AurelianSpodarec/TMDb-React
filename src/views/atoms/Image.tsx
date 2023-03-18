@@ -1,7 +1,6 @@
 import { _DEPRICATED_configApp } from "@/config/app";
 
 function Image({ src, url, size = "w500", type = "poster" }:ImageProps) {
-    console.log("hi", url)
     if(!url) return (
         <div className="flex items-center justify-center h-full w-full ">
         <svg className="text-white fill-white w-12" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 512 512">

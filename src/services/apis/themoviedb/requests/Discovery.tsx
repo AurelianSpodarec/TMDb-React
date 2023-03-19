@@ -91,8 +91,8 @@ export async function getDiscoverMovie(queryParams?: DiscoverMovieQueryParams): 
 
     const params:any = {
         ...queryParams, 
-        page: pageValue || defaultFilterDicoveryMovie.page,
-        sort_by: sort || defaultFilterDicoveryMovie.sort,
+        page: pageValue || defaultFilterDicoveryMovie["page"],
+        sort_by: sort || defaultFilterDicoveryMovie["sort"],
         "vote_average.gte": voteValue || defaultFilterDicoveryMovie["min-vote-avg"],
         "primary_release_date.lte": releaseDate || defaultFilterDicoveryMovie["max-release-date"],
     }

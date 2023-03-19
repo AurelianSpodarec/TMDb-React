@@ -4,17 +4,19 @@
 import FetchTheMovieDB from "../fetch/FetchTheMovieDB"
 
 
-const filteringParamsPrettyNames = {
+const filterPrettyNames = {
     query: "query",
     page: "page",
     include_adult: "adult",
     region: "region",
     year: "year",
-    primary_release_year: "release-year",
+    primary_release_year: "release-year", // needs to be always before current date so bigger chance to have an image, make the date dynamic
+    "primary_release_date.gte": "min-release-date",
+    "primary_release_date.lte": "max-release-date",
     append_to_response: "append-to-response",
     first_air_date_year: "first-air-date-year",
-    "vote_average.gte": "min-vote-avg",
-    "vote_average.lte": "min-vote-avg",
+    "vote_average.gte": "min-vote-avg", // ensures all stuff has at least 1 rating, a lot have 0 || UI: Let user select one and goes from there
+    "vote_average.lte": "max-vote-avg",
     "vote_count.gte": "min-vote-count",
     "vote_count.lte": "max-vote-count",
     certification_country: "certification-country",
@@ -53,40 +55,46 @@ const filteringParamsPrettyNames = {
     language: "lang"
 }
 
-// TODO: Create some sort of utility to help with the creation of filtering params, setting params, etc... so it can be re-used though the entire app
+function transformToPrettyURL() {
+    // get by sort_by and see if value matches
+}
 
-// TODO: Pretty URL - Its what should show in the URL
-const allFilteringOptionsNames = {
-    primary_release_date_lte: 'maxReleaseDate', // needs to be always before current date so bigger chance to have an image, make the date dynamic
-    vote_average_gte: 'minRating', // ensures all stuff has at least 1rating, a lot have 0 || UI: Let user select one and goes from there
-    sort_by: "sort",
-    page: "page"
-};
+// when setting url 
 
-// Create get reuqest from the above
-// Create set request from the above
+function setPrettyURL(key:string) {
+
+}
+
+function getPrettyURL(value:string) {
+
+}
+
+function translateToAPIkey() {
+
+}
+
 
 const defaultFilterDicoveryMovie = {
     page: 1,
     sort: "release_date.desc",
-    "vote_average.gte": 1,
-    "primary_release_date.lte": "2023-03-19",
+    "min-vote-avg": 1,
+    "max-release-date": "2023-03-19"
 }
 
 export async function getDiscoverMovie(queryParams?: DiscoverMovieQueryParams): Promise<any>  {
     const urlParams = new URLSearchParams(window.location.search);
     
     const pageValue = urlParams.get('page');
-    const voteValue = urlParams.get('vote_average.gte');
+    const voteValue = urlParams.get('min-vote-avg');
     const sort = urlParams.get('sort');
-    const releaseDate = urlParams.get('primary_release_date.lte');
+    const releaseDate = urlParams.get('max-release-date');
 
     const params:any = {
         ...queryParams, 
         page: pageValue || defaultFilterDicoveryMovie.page,
         sort_by: sort || defaultFilterDicoveryMovie.sort,
-        "vote_average.gte": voteValue || defaultFilterDicoveryMovie["vote_average.gte"],
-        "primary_release_date.lte": releaseDate || defaultFilterDicoveryMovie["primary_release_date.lte"],
+        "vote_average.gte": voteValue || defaultFilterDicoveryMovie["min-vote-avg"],
+        "primary_release_date.lte": releaseDate || defaultFilterDicoveryMovie["max-release-date"],
     }
 
     const qa = new URLSearchParams(params);

@@ -3,17 +3,26 @@
 // ============================================================
 import FetchTheMovieDB from "../fetch/FetchTheMovieDB"
 
+
+// TODO: Get all possible filter options from movie and give them a better name
+// Use that to construct separate filtering options
+
+// TODO: Create some sort of utility to help with the creation of filtering params, setting params, etc... so it can be re-used though the entire app
+
 // TODO: Pretty URL - Its what should show in the URL
 const discoveryMovieNames = {
     primary_release_date_lte: 'maxReleaseDate', // needs to be always before current date so bigger chance to have an image, make the date dynamic
     vote_average_gte: 'minRating', // ensures all stuff has at least 1rating, a lot have 0 || UI: Let user select one and goes from there
-    sort_by: "sortBy",
+    sort_by: "sort",
     page: "page"
 };
 
+// Create get reuqest from the above
+// Create set request from the above
+
 const defaultFilterDicoveryMovie = {
     page: 1,
-    sort_by: "release_date.desc",
+    sort: "release_date.desc",
     "vote_average.gte": 1,
     "primary_release_date.lte": "2023-03-19",
 }
@@ -23,13 +32,13 @@ export async function getDiscoverMovie(queryParams?: DiscoverMovieQueryParams): 
     
     const pageValue = urlParams.get('page');
     const voteValue = urlParams.get('vote_average.gte');
-    const sortBy = urlParams.get('sort_by');
+    const sort = urlParams.get('sort');
     const releaseDate = urlParams.get('primary_release_date.lte');
 
     const params:any = {
         ...queryParams, 
         page: pageValue || defaultFilterDicoveryMovie.page,
-        sort_by: sortBy || defaultFilterDicoveryMovie.sort_by,
+        sort_by: sort || defaultFilterDicoveryMovie.sort,
         "vote_average.gte": voteValue || defaultFilterDicoveryMovie["vote_average.gte"],
         "primary_release_date.lte": releaseDate || defaultFilterDicoveryMovie["primary_release_date.lte"],
     }

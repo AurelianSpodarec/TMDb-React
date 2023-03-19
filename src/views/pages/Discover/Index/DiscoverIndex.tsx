@@ -39,7 +39,7 @@ function DiscoverIndex() {
     }
 
     function handleSortByChange(sortBy:any) {
-        existingSearchParams.set("sort_by", sortBy.target.value);
+        existingSearchParams.set("sort", sortBy.target.value);
         updateSearchParams()
     }
 

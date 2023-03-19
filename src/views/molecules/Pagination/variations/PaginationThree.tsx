@@ -5,11 +5,6 @@ function PaginationThree({ data }:any) {
     if(!data) return <></>
     const pager = usePagination(data);
 
-    const totalResults = data.total_results
-
-    const resultsFrom = data.page === 1 ? 1 : data.page * 20 - 20
-    const resultsTo = data.page * 20
-
     return (
         <div className="text-white">
 
@@ -26,7 +21,7 @@ function PaginationThree({ data }:any) {
             <div className="flex">
                 <PageItem onClick={() => pager.goToPage("1")} label="1" />
                 <PageItem activePage={pager.currentPage} label={pager.currentPage} />
-                
+                <PageItem activePage={pager.currentPage + 1} label={pager.currentPage + 1} />
                 <PageItem onClick={() => pager.goToPage(pager.totalPages - 1)} label={pager.totalPages - 1} />
                 <PageItem onClick={() => pager.goToPage(pager.totalPages)} label={pager.totalPages} />
             </div>

@@ -4,18 +4,14 @@ import PageItem from "../_components/PageItem";
 function PaginationTwo({ data }:any) {
     if(!data) return <></>
     const pager = usePagination(data);
-
-    const totalResults = data.total_results
-
-    const resultsFrom = data.page === 1 ? 1 : data.page * 20 - 20
-    const resultsTo = data.page * 20
+ 
 
     return (
         <div className="text-white">
         <div className="flex justify-between items-center">
 
             <div>
-                {resultsFrom}-{resultsTo} of {totalResults} items
+                {pager.resultsFrom}-{pager.resultsTo} of {pager.totalResults} items
             </div>
 
             <div className="flex">

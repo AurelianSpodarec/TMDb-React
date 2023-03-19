@@ -15,6 +15,9 @@ const usePagination = (data:any) => {
     const firstPage = currentPage === 1;
     const lastPage = currentPage === totalPages;
 
+    const totalResults = data.total_results
+    const resultsFrom = firstPage ? 1 : data.page * 20 - 20
+    const resultsTo = data.page * 20
 
      // Page Helpers 
     // ==========================================
@@ -53,6 +56,9 @@ const usePagination = (data:any) => {
         firstPage,
         lastPage,
         totalPages,
+        totalResults,
+        resultsFrom,
+        resultsTo,
         goToNextPage,
         goToPreviousPage,
         goToPage

@@ -25,7 +25,7 @@ const usePagination = (data:any) => {
         window.scrollTo(0, 0);
     }
     
-    const updateSearchParams = (newPageValue: number) => {
+    const updateSearchParams = (newPageValue:any) => {
         existingSearchParams.set("page", String(newPageValue));
         setSearchParams(existingSearchParams);
         snapToTop()

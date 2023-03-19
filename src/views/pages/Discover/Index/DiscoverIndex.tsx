@@ -13,6 +13,7 @@ import FilterSortBy from "molecules/filtering/FilterSortBy";
 import FilterRating from "molecules/filtering/FilterRating";
 import FilterAdultContent from "molecules/filtering/FilterAdultContent";
 import PaginationTwo from "@/views/molecules/Pagination/variations/PaginationTwo";
+import PaginationThree from "@/views/molecules/Pagination/variations/PaginationThree";
 
 
 function DiscoverIndex() {
@@ -90,6 +91,7 @@ function DiscoverIndex() {
 
                 <Pagination data={data} />
                 <PaginationTwo data={data} />
+                <PaginationThree data={data} />
                 
             </Container>
             </Section>

@@ -2,20 +2,18 @@ import { useState } from "react";
 import { useLocation, useSearchParams } from "react-router-dom";
 
 
-
 const usePagination = (data:any) => {
     let [searchParams, setSearchParams] = useSearchParams();
     
     const location = useLocation();
     const existingSearchParams = new URLSearchParams(location.search);
-    const pageValue = parseInt(existingSearchParams.get('page') || 1);
-    
+    const pageValue = parseInt(existingSearchParams.get('page') || 1, 10);
     
     const totalPages = data && data.total_pages;
     const currentPage = data && data.page
 
     const firstPage = currentPage === 1;
-    const lastPage = currentPage === data.totalPages;
+    const lastPage = currentPage === totalPages;
 
 
      // Page Helpers 

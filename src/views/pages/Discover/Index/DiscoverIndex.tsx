@@ -95,63 +95,57 @@ const [adultContent, setAdultContent] = useState(false);
 
 
 
-const searchParamNames = {
+const discoveryFilterParams = {
     primary_release_date_lte: 'maxReleaseDate',
     vote_average_gte: 'minRating',
 };
 
 
-
-
-function changeDiscoveryURL ({ changeWhat, value }:any) {
-    const navigate = useNavigate()
-    const location = useLocation();
-    const params = new URLSearchParams(location.search);
-
-    // Look for X value, and change it
-    // If it doesn't exist, add it
-
-    navigate({
-        pathname: location.pathname,
-        search: params.toString()
-    });
-}
-
+   // const [filterParams, setSilterParams] = useState({
+    //     ...searchParams,
+    //     "sort_by":  "release_date.desc",
+    //     "primary_release_date.lte": "2023-03-03", // needs to be always before current date so bigger chance to have an image, make the date dynamic
+    //     "vote_average.gte": 1, // ensures all stuff has at least 1rating, a lot have 0 || UI: Let user select one and goes from there
+    // });
 
 
 function DiscoverIndex() {
-    let [searchParams, setSearchParams] = useSearchParams();
     const location = useLocation();
     const urlSearchParams = location.search
-
+    const [searchParams, setSearchParams] = useSearchParams(urlSearchParams);
+    
     const [data, setData] = useState({})
     const [isLoading, setIsLoading] = useState(true)
-    const [filterParams, setSilterParams] = useState({
-        ...searchParams,
-        "sort_by":  "release_date.desc",
-        "primary_release_date.lte": "2023-03-03", // needs to be always before current date so bigger chance to have an image, make the date dynamic
-        "vote_average.gte": 1, // ensures all stuff has at least 1rating, a lot have 0 || UI: Let user select one and goes from there
-    });
-
-
+    
+    const rating = searchParams.get('vote_average.gte') || 1
+    const sortBy = searchParams.get('sort_by') || "release_date.desc"
+    const releaseDate = searchParams.get('primary_release_date.lte') || "2023-03-03"
+    
+    const existingSearchParams = new URLSearchParams(location.search);
+    
+    function updateSearchParams() {
+        // existingSearchParams.set("primary_release_date.lte", "2023-03-03");
+        
+        setSearchParams(existingSearchParams);
+    }
+    
+    
     function handleSelectVote(filter:any) {
-        updateSearchParams({ "vote_average.gte": filter.target.value });
+        existingSearchParams.set("vote_average.gte", filter.target.value);
+        updateSearchParams()
     }
 
-    function handleSortByChange(sortBy: string) {
-        updateSearchParams({ sort_by: sortBy });
+    function handleSortByChange(sortBy:any) {
+        existingSearchParams.set("sort_by", sortBy.target.value);
+        updateSearchParams()
     }
 
-    function updateSearchParams(newParams: any) {
-        setSearchParams({
-        ...searchParams,
-        ...filterParams,
-        ...newParams,
-        });
-    }
+
+    // Other
+    // =======================================================
 
     async function fetchData() {
-        let res = await getDiscoverMovie(filterParams);
+        let res = await getDiscoverMovie();
         res = injectAdvertisement(res, res.results)
         setIsLoading(false)
         setData(res);
@@ -160,7 +154,7 @@ function DiscoverIndex() {
     useEffect(() => {
         fetchData()
         setIsLoading(true)
-    }, [filterParams, searchParams])
+    }, [searchParams])
 
     return (
         <div className="pt-40">
@@ -176,9 +170,11 @@ function DiscoverIndex() {
 
                         </div>
 
-                        <AdultContentCheckbox />
-                        <RatingDropdown value={filterParams['vote_average.gte']} onChange={handleSelectVote} />
-                        <SortByDropdown value={filterParams.sort_by} onChange={handleSortByChange} />
+                        <RatingDropdown value={rating} onChange={(e:any) => handleSelectVote(e)} />
+
+                        {/* <AdultContentCheckbox /> */}
+                        {/* <RatingDropdown value={filterParams['vote_average.gte']} onChange={handleSelectVote} /> */}
+                        <SortByDropdown value={sortBy} onChange={(e:any) => handleSortByChange(e)} />
                     </div>
 
                 </div>

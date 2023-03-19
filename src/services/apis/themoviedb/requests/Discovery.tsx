@@ -3,7 +3,7 @@
 // ============================================================
 import FetchTheMovieDB from "../fetch/FetchTheMovieDB"
 
-export async function getDiscoverMovie(queryParams: DiscoverMovieQueryParams): Promise<any>  {
+export async function getDiscoverMovie(queryParams?: DiscoverMovieQueryParams): Promise<any>  {
     
     const queryString = window.location.search;
     const urlParams = new URLSearchParams(queryString);

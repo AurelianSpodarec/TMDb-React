@@ -10,11 +10,15 @@ export async function getDiscoverMovie(queryParams?: DiscoverMovieQueryParams): 
     
     const pageValue = urlParams.get('page');
     const voteValue = urlParams.get('vote_average.gte');
+    const sortBy = urlParams.get('sort_by');
+    const releaseDate = urlParams.get('primary_release_date.lte');
 
     const params:any = {
         ...queryParams, 
+        page: pageValue || 1,
+        sort_by: sortBy,
         "vote_average.gte": voteValue || 1,
-        page: pageValue || 1
+        "primary_release_date.lte": releaseDate,
     }
 
     const qa = new URLSearchParams(params);

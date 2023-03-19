@@ -3,28 +3,23 @@
 // ============================================================
 import FetchTheMovieDB from "../fetch/FetchTheMovieDB"
 
-
-// TODO: START Refactor
-const optionsPrimaryReleaseYear = [
-
-]
-// https://api.themoviedb.org/3/discover/movie?api_key=YOUR_API_KEY&language=en-US&sort_by=popularity.desc&include_video=true&page=1&primary_release_year=2022&with_genres=28
-const discoveryFilterParams = {
-    primary_release_date_lte: 'maxReleaseDate',
-    vote_average_gte: 'minRating',
+// TODO: Pretty URL - Its what should show in the URL
+const discoveryMovieNames = {
+    primary_release_date_lte: 'maxReleaseDate', // needs to be always before current date so bigger chance to have an image, make the date dynamic
+    vote_average_gte: 'minRating', // ensures all stuff has at least 1rating, a lot have 0 || UI: Let user select one and goes from there
+    sort_by: "sortBy",
+    page: "page"
 };
-// const [filterParams, setSilterParams] = useState({
-//     ...searchParams,
-//     "sort_by":  "release_date.desc",
-//     "primary_release_date.lte": "2023-03-03", // needs to be always before current date so bigger chance to have an image, make the date dynamic
-//     "vote_average.gte": 1, // ensures all stuff has at least 1rating, a lot have 0 || UI: Let user select one and goes from there
-// });
-// TODO: END REFACTOR
+
+const defaultFilterDicoveryMovie = {
+    page: 1,
+    sort_by: "release_date.desc",
+    "vote_average.gte": 1,
+    "primary_release_date.lte": "2023-03-19",
+}
 
 export async function getDiscoverMovie(queryParams?: DiscoverMovieQueryParams): Promise<any>  {
-    
-    const queryString = window.location.search;
-    const urlParams = new URLSearchParams(queryString);
+    const urlParams = new URLSearchParams(window.location.search);
     
     const pageValue = urlParams.get('page');
     const voteValue = urlParams.get('vote_average.gte');
@@ -33,10 +28,10 @@ export async function getDiscoverMovie(queryParams?: DiscoverMovieQueryParams): 
 
     const params:any = {
         ...queryParams, 
-        page: pageValue || 1,
-        sort_by: sortBy,
-        "vote_average.gte": voteValue || 1,
-        "primary_release_date.lte": releaseDate,
+        page: pageValue || defaultFilterDicoveryMovie.page,
+        sort_by: sortBy || defaultFilterDicoveryMovie.sort_by,
+        "vote_average.gte": voteValue || defaultFilterDicoveryMovie["vote_average.gte"],
+        "primary_release_date.lte": releaseDate || defaultFilterDicoveryMovie["primary_release_date.lte"],
     }
 
     const qa = new URLSearchParams(params);

@@ -74,10 +74,10 @@ function translateToAPIkey() {
 }
 
 
-const defaultFilterDicoveryMovie = {
+const defaultStateFilterDicoveryMovie = {
     page: 1,
     sort: "release_date.desc",
-    "min-vote-avg": 1,
+    "min-vote-avg": 9,
     "max-release-date": "2023-03-19"
 }
 
@@ -91,10 +91,10 @@ export async function getDiscoverMovie(queryParams?: DiscoverMovieQueryParams): 
 
     const params:any = {
         ...queryParams, 
-        page: pageValue || defaultFilterDicoveryMovie["page"],
-        sort_by: sort || defaultFilterDicoveryMovie["sort"],
-        "vote_average.gte": voteValue || defaultFilterDicoveryMovie["min-vote-avg"],
-        "primary_release_date.lte": releaseDate || defaultFilterDicoveryMovie["max-release-date"],
+        page: pageValue || defaultStateFilterDicoveryMovie["page"],
+        sort_by: sort || defaultStateFilterDicoveryMovie["sort"],
+        "vote_average.gte": voteValue || defaultStateFilterDicoveryMovie["min-vote-avg"],
+        "primary_release_date.lte": releaseDate || defaultStateFilterDicoveryMovie["max-release-date"],
     }
 
     const qa = new URLSearchParams(params);

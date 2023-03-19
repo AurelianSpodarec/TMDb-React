@@ -12,6 +12,7 @@ import PosterList from "molecules/Poster/PosterList";
 import FilterSortBy from "molecules/filtering/FilterSortBy";
 import FilterRating from "molecules/filtering/FilterRating";
 import FilterAdultContent from "molecules/filtering/FilterAdultContent";
+import PaginationTwo from "@/views/molecules/Pagination/variations/PaginationTwo";
 
 
 function DiscoverIndex() {
@@ -88,6 +89,7 @@ function DiscoverIndex() {
             <Container>
 
                 <Pagination data={data} />
+                <PaginationTwo data={data} />
                 
             </Container>
             </Section>

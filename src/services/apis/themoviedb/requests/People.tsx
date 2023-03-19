@@ -93,10 +93,15 @@ export async function getPersonNowPlaying(): Promise<any> {
     return FetchTheMovieDB(`person/now_playing?`, "GET")
 }
 
-export async function getPersonListPopular(page = 1): Promise<any>  {
+export async function getPersonListPopular(page:any): Promise<any>  {
+    const queryString = window.location.search;
+    const urlParams = new URLSearchParams(queryString);
+    const pageValue = urlParams.get('page');
+
     const params:any = {
-        page
+        page: pageValue || 1
     }
+
 
     const qa = new URLSearchParams(params);
     const url = qa.toString() === "&" ? "" : `?${qa}&`;

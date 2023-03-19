@@ -23,7 +23,8 @@ function DiscoverIndex() {
     const [isLoading, setIsLoading] = useState(true)
     
     const rating = searchParams.get('vote_average.gte') || 1
-    const sortBy = searchParams.get('sort_by') || "release_date.desc"
+    // TODO: you should be able to set multiple params here
+    const sortBy = searchParams.get('sort_by') || "release_date.desc" 
     const releaseDate = searchParams.get('primary_release_date.lte') || "2023-03-03"
     
     const existingSearchParams = new URLSearchParams(location.search);
@@ -53,6 +54,7 @@ function DiscoverIndex() {
         setData(res);
     }
 
+    // IDEA: If page changes, refresh the PosterList from itself instead of here maybe, otherwise searchParams will need to be included in all pages
     useEffect(() => {
         fetchData()
         setIsLoading(true)
@@ -64,21 +66,11 @@ function DiscoverIndex() {
             {/* START: SORT MENU */}
             <Section>
             <Container>
-
-                <div>
-
-                    <div>
-                        <div>
-
-                        </div>
-
-                        <FilterRating value={rating} onChange={(e:any) => handleSelectVote(e)} />
-                        <FilterAdultContent />
-                        <FilterSortBy value={sortBy} onChange={(e:any) => handleSortByChange(e)} />
-                    </div>
-
-                </div>
-
+                <div>            
+                    <FilterRating value={rating} onChange={(e:any) => handleSelectVote(e)} />
+                    <FilterAdultContent />
+                    <FilterSortBy value={sortBy} onChange={(e:any) => handleSortByChange(e)} />
+                </div>   
             </Container>
             </Section>
             {/* END: SORT MENU */}

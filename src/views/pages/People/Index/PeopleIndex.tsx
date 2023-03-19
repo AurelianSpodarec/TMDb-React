@@ -10,6 +10,7 @@ import TitleHeader from "@/views/molecules/TitleHeader";
 import { configAlphabet } from "@/config/alphabet";
 import { injectAdvertisement } from "@/utils/common";
 import Pagination from "@/views/molecules/Pagination/Pagination";
+import { useLocation, useSearchParams } from "react-router-dom";
 
 
 function AlphabetLetter({ letter }:any) {
@@ -29,7 +30,9 @@ function AlphabetList() {
 }
 
 function PeopleIndex() {
-
+    const location = useLocation();
+    const urlSearchParams = location.search
+    const [searchParams, setSearchParams] = useSearchParams(urlSearchParams);
     const [topTrending, setTopTrending] = useState({});
 
     async function fetch() {
@@ -40,7 +43,7 @@ function PeopleIndex() {
 
     useEffect(() => {
         fetch()
-    }, [])
+    }, [searchParams])
    
     return (
         <div className="bg-[#171e29] pt-28">

@@ -4,13 +4,59 @@
 import FetchTheMovieDB from "../fetch/FetchTheMovieDB"
 
 
-// TODO: Get all possible filter options from movie and give them a better name
-// Use that to construct separate filtering options
+const filteringParamsPrettyNames = {
+    query: "query",
+    page: "page",
+    include_adult: "adult",
+    region: "region",
+    year: "year",
+    primary_release_year: "release-year",
+    append_to_response: "append-to-response",
+    first_air_date_year: "first-air-date-year",
+    "vote_average.gte": "min-vote-avg",
+    "vote_average.lte": "min-vote-avg",
+    "vote_count.gte": "min-vote-count",
+    "vote_count.lte": "max-vote-count",
+    certification_country: "certification-country",
+    certification: "certification",
+    "certification.lte": "max-certification",
+    "certification.gte": "min-certification",
+    with_companies: "with-companies",
+    with_genres: "with-genres",
+    with_keywords: "with-keywords",
+    with_people: "with-people",
+    with_networks: "with-networks",
+    without_genres: "without-genres",
+    without_keywords: "without-keywords",
+    "year.lte": "max-year",
+    "year.gte": "min-year",
+    "air_date.lte": "max-air-date",
+    "air_date.gte": "min-air-date",
+    "first_air_date.lte": "max-first-air-date",
+    "first_air_date.gte": "min-first-air-date",
+    timezone: "timezone",
+    "with_runtime.lte": "max-runtime",
+    "with_runtime.gte": "min-runtime",
+    with_original_language: "with-original-language",
+    with_watch_monetization_types: "with-watch-monetization-types",
+    watch_region: "watch-region",
+    with_original_title: "with-original-title",
+    with_title: "with-title",
+    with_crew: "with-crew",
+    with_cast: "with-cast",
+    with_providers: "with-providers",
+    without_providers: "without-providers",
+    with_release_type: "with-release-type",
+    with_peopledepartment: "with-peopledepartment",
+    "with_people.job": "with-people-job",
+    sort_by: "sort",
+    language: "lang"
+}
 
 // TODO: Create some sort of utility to help with the creation of filtering params, setting params, etc... so it can be re-used though the entire app
 
 // TODO: Pretty URL - Its what should show in the URL
-const discoveryMovieNames = {
+const allFilteringOptionsNames = {
     primary_release_date_lte: 'maxReleaseDate', // needs to be always before current date so bigger chance to have an image, make the date dynamic
     vote_average_gte: 'minRating', // ensures all stuff has at least 1rating, a lot have 0 || UI: Let user select one and goes from there
     sort_by: "sort",

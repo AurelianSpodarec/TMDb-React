@@ -7,6 +7,7 @@ const usePagination = (data:any) => {
     
     const location = useLocation();
     const existingSearchParams = new URLSearchParams(location.search);
+    // @ts-ignore
     const pageValue = parseInt(existingSearchParams.get('page') || 1, 10);
     
     const totalPages = data && data.total_pages;

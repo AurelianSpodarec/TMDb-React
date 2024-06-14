@@ -5,10 +5,10 @@ const FetchTheMovieDB = async function (endpoint:string, method: 'GET' | 'POST' 
    
     const response = await fetch(`${config.API_URL}/${config.API_VERSION}/${endpoint}api_key=${config.API_KEY}`, {
         method,
-        "credentials": 'omit',
-        "headers": {
+        credentials: 'omit',
+        headers: {
             'Content-Type': 'application/json',
-            'Accept': 'application/json',
+            Accept: 'application/json',
         },
         body: JSON.stringify(data)
     })

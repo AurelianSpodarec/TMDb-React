@@ -79,7 +79,7 @@ function DiscoverIndex() {
 
             <Section>
             <Container>
-
+{/* @ts-ignore */}
                 <PosterList data={data.results}  postType="movies" isLoading={isLoading} />
 
             </Container>
